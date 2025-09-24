@@ -14,19 +14,19 @@ class UsersModel extends Model {
     {
         parent::__construct();
     }
-    public function page($q, $records_per_page = null, $page = null) {
+    public function page($q = '', $records_per_page = null, $page = null) {
+ 
             if (is_null($page)) {
                 return $this->db->table('list')->get_all();
             } else {
                 $query = $this->db->table('list');
-                
+
                 // Build LIKE conditions
                 $query->like('id', '%'.$q.'%')
                     ->or_like('first_name', '%'.$q.'%')
                     ->or_like('last_name', '%'.$q.'%')
-                    ->or_like('email', '%'.$q.'%')
-                    ->or_like('added', '%'.$q.'%');
-
+                    ->or_like('email', '%'.$q.'%');
+                    
                 // Clone before pagination
                 $countQuery = clone $query;
 
@@ -39,4 +39,5 @@ class UsersModel extends Model {
                 return $data;
             }
         }
+
 }
