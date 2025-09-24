@@ -2,8 +2,8 @@
 defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
 /**
- * Controller: StudentsController
- * 
+ * Controller: UsersController
+ *
  * Automatically generated via CLI.
  */
 class UsersController extends Controller {
@@ -11,79 +11,108 @@ class UsersController extends Controller {
     {
         parent::__construct();
     }
-public function index()
-    {
-        $data['users'] = $this->UsersModel->all();
 
+    public function index()
+    {
+        $page = 1;
+        if (isset($_GET['page']) && !empty($_GET['page'])) {
+            $page = $this->io->get('page');
+        }
+
+        $q = '';
+        if (isset($_GET['q']) && !empty($_GET['q'])) {
+            $q = trim($this->io->get('q'));
+        }
+
+        $records_per_page = 10;
+
+        $all = $this->UsersModel->page($q, $records_per_page, $page);
+        $data['all'] = $all['records'];
+        $total_rows = $all['total_rows'];
+        $this->pagination->set_options([
+            'first_link'     => '⏮ First',
+            'last_link'      => 'Last ⏭',
+            'next_link'      => 'Next →',
+            'prev_link'      => '← Prev',
+            'page_delimiter' => '&page='
+        ]);
+        $this->pagination->set_theme('bootstrap'); // or 'tailwind', or 'custom'
+        $this->pagination->initialize($total_rows, $records_per_page, $page, site_url('users/index').'?q=' . $q);
+        $data['page'] = $this->pagination->paginate();
         $this->call->view('users/index', $data);
     }
-    
-   public function create()
-   {
-        if($this->io->method()== 'post')
-            {
-            $first_name = $this->io->post('first_name');
-            $last_name = $this->io->post('last_name');
-            $email = $this->io->post('email');
 
-        $data = array(
-            'first_name' => $first_name,
-            'last_name' => $last_name,
-            'email' => $email,
-        );
+    public function create()
+    {
+        if ($this->io->method() == 'post') {
+            $first_name = trim($this->io->post('first_name'));
+            $last_name = trim($this->io->post('last_name'));
+            $email = trim($this->io->post('email'));
 
-       if ($this->UsersModel->insert($data)) {
-            redirect();
-       } else {
-         echo "Error";
-       }
-    } else {
+            // Basic validation
+            if (empty($first_name) || empty($last_name) || empty($email)) {
+                echo "All fields are required.";
+                return;
+            }
+
+            $data = array(
+                'first_name' => $first_name,
+                'last_name' => $last_name,
+                'email' => $email,
+            );
+
+            if ($this->UsersModel->insert($data)) {
+                redirect(site_url('users'));
+            } else {
+                echo "Error inserting user.";
+            }
+        } else {
             $this->call->view('users/create');
-        }        
+        }
     }
 
     public function update($id)
     {
-        $user = $this-> UsersModel->find($id);
-    if(!$user)
-    {
-        echo "User not found dahil wala kang luxury car.";
-        return;
-    }
-        if($this->io->method()=='post')
-        {
-            $first_name = $this->io->post('first_name');
-            $last_name = $this->io->post('last_name');
-            $email = $this->io->post('email');
-
-            $data=array('first_name' => $first_name,
-            'last_name' => $last_name,
-            'email' => $email);
-
-            if($this->UsersModel->update($id, $data))
-            {
-                redirect();
-            }
-            else {
-                echo "error dahil kurap ka!";
-            }
+        $user = $this->UsersModel->find($id);
+        if (!$user) {
+            echo "User not found.";
+            return;
         }
-        else
-        {
+
+        if ($this->io->method() == 'post') {
+            $first_name = trim($this->io->post('first_name'));
+            $last_name = trim($this->io->post('last_name'));
+            $email = trim($this->io->post('email'));
+
+            // Basic validation
+            if (empty($first_name) || empty($last_name) || empty($email)) {
+                echo "All fields are required.";
+                return;
+            }
+
+            $data = array(
+                'first_name' => $first_name,
+                'last_name' => $last_name,
+                'email' => $email,
+            );
+
+            if ($this->UsersModel->update($id, $data)) {
+                redirect(site_url('users'));
+            } else {
+                echo "Error updating user.";
+            }
+        } else {
             $data['user'] = $user;
             $this->call->view('users/update', $data);
         }
     }
 
-    function delete($id)
+    public function delete($id)
     {
-        if($this->UsersModel->delete($id))
-        {
-            redirect();
-        }
-        else{
-            echo "Error! Are you sure you want to delete record?";
+        if ($this->UsersModel->delete($id)) {
+            redirect(site_url('users'));
+        } else {
+            echo "Error deleting user.";
         }
     }
-    
 }
