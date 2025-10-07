@@ -21,83 +21,85 @@
 
   .card {
     border-radius: 16px;
-    box-shadow: 0 8px 20px rgba(30, 86, 49, 0.3);
-    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 20px rgba(0, 51, 153, 0.3);
+    background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
   }
 
   .table th {
-    background: #1e5631;
+    background: #003399;
     color: #ffffff;
     text-transform: uppercase;
     font-size: 13px;
   }
 
   .table tbody tr:hover {
-    background: rgba(212, 175, 55, 0.1);
+    background: rgba(255, 204, 0, 0.1);
   }
 
   .btn-create {
-    background: linear-gradient(135deg, #1e5631, #a38b00);
+    background: linear-gradient(135deg, #003399, #CC0000);
     border: none;
     color: white;
   }
 
   .btn-create:hover {
-    background: #144423;
+    background: #001f66;
     color: #fff;
   }
 
   .btn-outline-danger {
-    border-color: #d4af37;
-    color: #1e5631;
+    border-color: #FFCC00;
+    color: #003399;
   }
 
   .btn-outline-danger:hover {
-    background-color: #d4af37;
-    color: white;
-    border-color: #d4af37;
+    background-color: #FFCC00;
+    color: #003399;
+    border-color: #FFCC00;
   }
 
   .text-danger {
-    color: #1e5631 !important;
+    color: #CC0000 !important;
   }
 
   .alert-light {
-    border-color: #d4af37 !important;
-    background-color: rgba(255, 255, 255, 0.8);
+    border-color: #FFCC00 !important;
+    background-color: rgba(255, 255, 255, 0.85);
+    color: #003399;
   }
 
   .btn-warning {
-    background-color: #d4af37;
+    background-color: #FFCC00;
     border: none;
-    color: #fff;
+    color: #003399;
+    font-weight: 600;
   }
 
   .btn-warning:hover {
-    background-color: #b9961b;
+    background-color: #e6b800;
   }
 
   .btn-danger {
-    background-color: #9c1f0cff;
+    background-color: #CC0000;
     border: none;
   }
 
   .btn-danger:hover {
-    background-color: #d32d2d8f;
+    background-color: #a30000;
   }
 
   .alert-danger {
-    background-color: #d4af37;
+    background-color: #CC0000;
     color: white;
     border: none;
   }
 
   .alert-warning {
-    background-color: #fff8dc;
-    border-color: #d4af37;
-    color: #1e5631;
+    background-color: #fff8e1;
+    border-color: #FFCC00;
+    color: #003399;
   }
 
   /* Search field styling */
@@ -109,6 +111,8 @@
 
   #searchInput {
     padding-right: 35px;
+    border: 1px solid #003399;
+    color: #003399;
   }
 
   #clearSearch {
@@ -117,14 +121,15 @@
     background: none;
     border: none;
     font-size: 20px;
-    color: #1e5631;
+    color: #003399;
     cursor: pointer;
     top: 50%;
     transform: translateY(-50%);
     display: none;
     z-index: 2;
   }
-  </style>
+</style>
+
 </head>
 
 <body>

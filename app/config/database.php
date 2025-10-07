@@ -73,9 +73,9 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
     'driver'	=> 'mysql',
     'hostname'	=> 'sql12.freesqldatabase.com',
     'port'		=> '3306',
-    'username'	=> 'sql12800591',
-    'password'	=> '7RKSjwS3yi',
-    'database'	=> 'sql12800591',
+    'username'	=> 'sql12801784',
+    'password'	=> 'mU3TuWaIIE',
+    'database'	=> 'sql12801784',
     'charset'	=> 'utf8mb4',
     'dbprefix'	=> '',
     // Optional for SQLite

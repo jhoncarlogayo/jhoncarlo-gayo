@@ -12,148 +12,150 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
 
   <style>
-    body {
-      min-height: 100vh;
-      margin: 0;
-      font-family: "Poppins", sans-serif;
-      background: url('<?= base_url() . "public/image/BG2.jpg"; ?>') no-repeat center center/cover;
-      padding: 30px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+  body {
+    min-height: 100vh;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    background: url('<?= base_url() . "public/image/BG2.jpg"; ?>') no-repeat center center/cover;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-    .card {
-      border-radius: 16px;
-      box-shadow: 0 8px 20px rgba(30, 86, 49, 0.3);
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      max-width: 480px;
-      width: 100%;
-      border: 1px solid rgba(212, 175, 55, 0.4);
-    }
+  .card {
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 51, 153, 0.3); /* DPWH Blue shadow */
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    max-width: 480px;
+    width: 100%;
+    border: 1px solid rgba(255, 204, 0, 0.4); /* Gold border */
+  }
 
-    h2 {
-      color: #1e5631;
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-      text-align: center;
-      letter-spacing: 0.05em;
-    }
+  h2 {
+    color: #003399; /* DPWH Blue */
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
 
-    label {
-      font-weight: 600;
-      color: #1e5631;
-    }
+  label {
+    font-weight: 600;
+    color: #003399; /* Blue label */
+  }
 
-    input,
-    select {
-      border-radius: 12px;
-      border: 1.5px solid #a38b00;
-      padding: 0.65rem 1rem;
-      font-size: 1rem;
-      color: #1e5631;
-      background: rgba(255, 255, 255, 0.75);
-      transition: border-color 0.3s ease;
-    }
+  input,
+  select {
+    border-radius: 12px;
+    border: 1.5px solid #FFCC00; /* Gold border */
+    padding: 0.65rem 1rem;
+    font-size: 1rem;
+    color: #001a66; /* Dark blue text */
+    background: rgba(255, 255, 255, 0.8);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
 
-    input::placeholder {
-      color: #7a7a7a;
-    }
+  input::placeholder {
+    color: #7a7a7a;
+  }
 
-    input:focus,
-    select:focus {
-      outline: none;
-      border-color: #1e5631;
-      box-shadow: 0 0 8px 0 rgba(30, 86, 49, 0.3);
-      background: #fff;
-    }
+  input:focus,
+  select:focus {
+    outline: none;
+    border-color: #003399;
+    box-shadow: 0 0 8px rgba(0, 51, 153, 0.4);
+    background: #fff;
+  }
 
-    .form-control:focus-visible {
-      outline-offset: 0;
-    }
+  .form-control:focus-visible {
+    outline-offset: 0;
+  }
 
-    /* Flex wrapper for input + eye */
-    .input-with-icon {
-      display: flex;
-      align-items: center;
-      position: relative;
-    }
+  /* Input with icon */
+  .input-with-icon {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
 
-    .input-with-icon input {
-      flex: 1;
-      padding-right: 2.5rem;
-    }
+  .input-with-icon input {
+    flex: 1;
+    padding-right: 2.5rem;
+  }
 
-    .input-with-icon i {
-      margin-left: -2rem;
-      cursor: pointer;
-      color: #a38b00;
-      font-size: 1.2rem;
-      flex-shrink: 0;
-    }
+  .input-with-icon i {
+    margin-left: -2rem;
+    cursor: pointer;
+    color: #FFCC00; /* Gold icon */
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    transition: color 0.3s ease;
+  }
 
-    .input-with-icon i:hover {
-      color: #1e5631;
-    }
+  .input-with-icon i:hover {
+    color: #003399; /* Blue hover */
+  }
 
-    .btn-create {
-      background: linear-gradient(135deg, #1e5631, #a38b00);
-      border: none;
-      color: white;
-      font-weight: 600;
-      padding: 0.75rem;
-      border-radius: 12px;
-      width: 100%;
-      font-size: 1.1rem;
-      box-shadow: 0 6px 12px rgba(30, 86, 49, 0.3);
-      transition: background-color 0.3s ease;
-    }
+  .btn-create {
+    background: linear-gradient(135deg, #003399, #CC0000); /* Blue → Red gradient */
+    border: none;
+    color: white;
+    font-weight: 600;
+    padding: 0.75rem;
+    border-radius: 12px;
+    width: 100%;
+    font-size: 1.1rem;
+    box-shadow: 0 6px 12px rgba(0, 51, 153, 0.3);
+    transition: all 0.3s ease;
+  }
 
-    .btn-create:hover {
-      background: #144423;
-      color: white;
-    }
+  .btn-create:hover {
+    background: linear-gradient(135deg, #002266, #990000);
+    box-shadow: 0 8px 16px rgba(0, 51, 153, 0.5);
+  }
 
-    .error-message {
-      background: rgba(255, 0, 0, 0.1);
-      border: 1px solid rgba(255, 0, 0, 0.3);
-      color: #a70000;
-      border-radius: 12px;
-      padding: 0.75rem 1rem;
-      text-align: center;
-      margin-bottom: 1rem;
-      font-weight: 600;
-      font-size: 0.9rem;
-    }
+  .error-message {
+    background: rgba(255, 0, 0, 0.1);
+    border: 1px solid rgba(255, 0, 0, 0.3);
+    color: #a70000;
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
 
-    .btn-back-container {
-      margin-top: 1.5rem;
-      text-align: center;
-    }
+  .btn-back-container {
+    margin-top: 1.5rem;
+    text-align: center;
+  }
 
-    .btn-back {
-      color: #1e5631;
-      font-weight: 600;
-      text-decoration: none;
-      border: 1.5px solid #a38b00;
-      padding: 0.5rem 1.75rem;
-      border-radius: 12px;
-      display: inline-block;
-      transition: all 0.3s ease;
-      background: rgba(255, 255, 255, 0.75);
-      box-shadow: 0 4px 8px rgba(163, 139, 0, 0.3);
-    }
+  .btn-back {
+    color: #003399;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1.5px solid #FFCC00;
+    padding: 0.5rem 1.75rem;
+    border-radius: 12px;
+    display: inline-block;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.75);
+    box-shadow: 0 4px 8px rgba(255, 204, 0, 0.3);
+  }
 
-    .btn-back:hover {
-      color: white;
-      background: #1e5631;
-      border-color: #144423;
-      box-shadow: 0 6px 14px rgba(20, 68, 35, 0.6);
-      text-decoration: none;
-    }
-  </style>
+  .btn-back:hover {
+    color: white;
+    background: linear-gradient(135deg, #003399, #CC0000);
+    box-shadow: 0 6px 14px rgba(0, 51, 153, 0.5);
+    text-decoration: none;
+  }
+</style>
+
+
 </head>
 
 <body>
