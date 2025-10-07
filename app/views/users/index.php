@@ -8,254 +8,220 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
-  body {
-    min-height: 100vh;
-    margin: 0;
-    font-family: "Poppins", sans-serif;
-    background: url('<?= base_url() . "public/image/BG.jpg"; ?>') no-repeat center center/cover;
-    padding: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: url('<?= base_url() . "public/image/BG.jpg"; ?>') no-repeat center center/cover;
+      min-height: 100vh;
+      display: flex;
+    }
 
-  .card {
-    border-radius: 16px;
-    box-shadow: 0 8px 20px rgba(0, 51, 153, 0.3);
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-  }
+    /* Sidebar */
+    .sidebar {
+      width: 250px;
+      background: rgba(0, 51, 153, 0.95);
+      color: white;
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 4px 0 20px rgba(0, 0, 0, 0.2);
+    }
 
-  .table th {
-    background: #003399;
-    color: #ffffff;
-    text-transform: uppercase;
-    font-size: 13px;
-  }
+    .sidebar h3 {
+      font-weight: 600;
+      text-align: center;
+      color: #FFCC00;
+      letter-spacing: 1px;
+    }
 
-  .table tbody tr:hover {
-    background: rgba(255, 204, 0, 0.1);
-  }
+    .sidebar a {
+      color: white;
+      text-decoration: none;
+      margin: 10px 0;
+      padding: 10px;
+      display: block;
+      border-radius: 8px;
+      transition: all 0.3s;
+    }
 
-  .btn-create {
-    background: linear-gradient(135deg, #003399, #CC0000);
-    border: none;
-    color: white;
-  }
+    .sidebar a:hover {
+      background: #FFCC00;
+      color: #003399;
+      font-weight: 600;
+    }
 
-  .btn-create:hover {
-    background: #001f66;
-    color: #fff;
-  }
+    .logout-btn {
+      background: #CC0000;
+      text-align: center;
+      padding: 10px;
+      border-radius: 8px;
+      font-weight: 500;
+    }
 
-  .btn-outline-danger {
-    border-color: #FFCC00;
-    color: #003399;
-  }
+    .logout-btn:hover {
+      background: #a30000;
+      color: white;
+    }
 
-  .btn-outline-danger:hover {
-    background-color: #FFCC00;
-    color: #003399;
-    border-color: #FFCC00;
-  }
+    /* Main content */
+    .main-content {
+      flex: 1;
+      padding: 40px;
+      backdrop-filter: blur(12px);
+    }
 
-  .text-danger {
-    color: #CC0000 !important;
-  }
+    .card {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      padding: 30px;
+    }
 
-  .alert-light {
-    border-color: #FFCC00 !important;
-    background-color: rgba(255, 255, 255, 0.85);
-    color: #003399;
-  }
+    h2 {
+      color: #CC0000;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 30px;
+    }
 
-  .btn-warning {
-    background-color: #FFCC00;
-    border: none;
-    color: #003399;
-    font-weight: 600;
-  }
+    .table thead {
+      background: #003399;
+      color: white;
+      text-transform: uppercase;
+      font-size: 13px;
+    }
 
-  .btn-warning:hover {
-    background-color: #e6b800;
-  }
+    .table tbody tr:hover {
+      background: rgba(255, 204, 0, 0.15);
+    }
 
-  .btn-danger {
-    background-color: #CC0000;
-    border: none;
-  }
+    .btn-warning {
+      background-color: #FFCC00;
+      border: none;
+      color: #003399;
+      font-weight: 600;
+    }
 
-  .btn-danger:hover {
-    background-color: #a30000;
-  }
+    .btn-danger {
+      background-color: #CC0000;
+      border: none;
+    }
 
-  .alert-danger {
-    background-color: #CC0000;
-    color: white;
-    border: none;
-  }
+    .btn-warning:hover { background-color: #e6b800; }
+    .btn-danger:hover { background-color: #a30000; }
 
-  .alert-warning {
-    background-color: #fff8e1;
-    border-color: #FFCC00;
-    color: #003399;
-  }
+    .search-bar {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      margin-bottom: 15px;
+    }
 
-  /* Search field styling */
-  .search-form {
-    position: relative;
-    display: flex;
-    align-items: center;
-  }
+    .search-bar input {
+      width: 250px;
+      border: 1px solid #003399;
+      color: #003399;
+      border-radius: 6px;
+    }
 
-  #searchInput {
-    padding-right: 35px;
-    border: 1px solid #003399;
-    color: #003399;
-  }
+    .btn-create {
+      background: linear-gradient(135deg, #003399, #CC0000);
+      border: none;
+      color: white;
+      font-weight: 600;
+    }
 
-  #clearSearch {
-    position: absolute;
-    right: 120px;
-    background: none;
-    border: none;
-    font-size: 20px;
-    color: #003399;
-    cursor: pointer;
-    top: 50%;
-    transform: translateY(-50%);
-    display: none;
-    z-index: 2;
-  }
-</style>
+    .btn-create:hover {
+      background: #001f66;
+    }
 
+    .welcome {
+      background: rgba(255, 255, 255, 0.8);
+      border-left: 6px solid #FFCC00;
+      padding: 10px 15px;
+      font-weight: 500;
+      color: #003399;
+      margin-bottom: 20px;
+      border-radius: 6px;
+    }
+  </style>
 </head>
 
 <body>
-  <div class="card w-100" style="max-width:1100px;">
-    <div class="card-body">
-      <!-- Title -->
-      <h2 class="text-center mb-4 text-danger fw-bold">
-        <?= ($logged_in_user['role'] === 'admin') ? 'Admin Dashboard' : 'User Dashboard'; ?>
-      </h2>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div>
+      <h3>DPWH Portal</h3>
+      <a href="#">Dashboard</a>
+      <a href="<?= site_url('users/create'); ?>">Create User</a>
+    </div>
+    <a href="<?= site_url('auth/logout'); ?>" class="logout-btn">Logout</a>
+  </div>
 
-      <!-- Welcome -->
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="card">
+      <h2><?= ($logged_in_user['role'] === 'admin') ? 'Admin Dashboard' : 'User Dashboard'; ?></h2>
+
       <?php if(!empty($logged_in_user)): ?>
-        <div class="alert alert-light border border-danger-subtle text-center fw-semibold">
+        <div class="welcome">
           Welcome, <span class="text-danger"><?= html_escape($logged_in_user['username']); ?></span>
         </div>
-      <?php else: ?>
-        <div class="alert alert-danger text-center">Logged in user not found</div>
       <?php endif; ?>
 
-      <!-- Top bar -->
-      <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-3 gap-3">
-        <a href="<?= site_url('auth/logout'); ?>" class="btn btn-danger px-4">Logout</a>
+      <form action="<?= site_url('users'); ?>" method="get" class="search-bar">
+        <?php $q = isset($_GET['q']) ? $_GET['q'] : ''; ?>
+        <input type="text" name="q" class="form-control" placeholder="Search user..." value="<?= html_escape($q); ?>">
+        <button type="submit" class="btn btn-warning">Search</button>
+      </form>
 
-        <!-- Search with clear button -->
-        <form action="<?= site_url('users'); ?>" method="get" class="search-form">
-          <?php $q = isset($_GET['q']) ? $_GET['q'] : ''; ?>
-          <input id="searchInput" name="q" type="text" placeholder="Search" value="<?= html_escape($q); ?>" class="form-control">
-
-          <!-- Clear (X) Button -->
-          <button type="button" id="clearSearch" title="Clear Search">&times;</button>
-
-          <!-- Search Submit Button -->
-          <button type="submit" style="
-            background-color: #d4af37;
-            color: white;
-            border: none;
-            padding: 6px 14px;
-            font-size: 14px;
-            font-weight: 600;
-            border-radius: 6px;
-            margin-left: 8px;
-            transition: background-color 0.3s ease;">
-            Search
-          </button>
-        </form>
-      </div>
-
-      <!-- Table -->
       <div class="table-responsive">
         <?php if(!empty($users)): ?>
-          <table class="table table-striped table-hover text-center align-middle">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Username</th>
-                <th>Email</th>
+        <table class="table table-hover text-center align-middle">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Username</th>
+              <th>Email</th>
+              <?php if ($logged_in_user['role'] === 'admin'): ?>
+                <th>Role</th>
+              <?php endif; ?>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php foreach ($users as $user): ?>
+            <tr>
+              <td><?= html_escape($user['id']); ?></td>
+              <td><?= html_escape($user['username']); ?></td>
+              <td><?= html_escape($user['email']); ?></td>
+              <?php if ($logged_in_user['role'] === 'admin'): ?>
+                <td><?= html_escape($user['role']); ?></td>
+              <?php endif; ?>
+              <td>
                 <?php if ($logged_in_user['role'] === 'admin'): ?>
-                  <th>Password</th>
-                  <th>Role</th>
+                  <a href="<?= site_url('/users/update/'.$user['id']);?>" class="btn btn-sm btn-warning">Update</a>
+                  <a href="<?= site_url('/users/delete/'.$user['id']);?>" class="btn btn-sm btn-danger">Delete</a>
+                <?php else: ?>
+                  <span class="text-muted">View Only</span>
                 <?php endif; ?>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php foreach ($users as $user): ?>
-              <tr>
-                <td><?= html_escape($user['id']); ?></td>
-                <td><?= html_escape($user['username']); ?></td>
-                <td><?= html_escape($user['email']); ?></td>
-                <?php if ($logged_in_user['role'] === 'admin'): ?>
-                  <td>*******</td>
-                  <td><?= html_escape($user['role']); ?></td>
-                <?php endif; ?>
-                <td>
-                  <?php if ($logged_in_user['role'] === 'admin'): ?>
-                    <a href="<?= site_url('/users/update/'.$user['id']);?>" class="btn btn-sm btn-warning">Update</a>
-                    <a href="<?= site_url('/users/delete/'.$user['id']);?>" class="btn btn-sm btn-danger">Delete</a>
-                  <?php else: ?>
-                    <span class="text-muted">View Only</span>
-                  <?php endif; ?>
-                </td>
-              </tr>
-              <?php endforeach; ?>
-            </tbody>
-          </table>
+              </td>
+            </tr>
+            <?php endforeach; ?>
+          </tbody>
+        </table>
         <?php else: ?>
           <div class="alert alert-warning text-center">No users found.</div>
         <?php endif; ?>
       </div>
 
-      <!-- Pagination -->
-      <div class="d-flex justify-content-center">
+      <div class="d-flex justify-content-between align-items-center mt-3">
         <?= $page; ?>
       </div>
-
-      <!-- Create Button -->
-      <?php if ($logged_in_user['role'] === 'admin'): ?>
-        <div class="d-flex justify-content-center mt-4">
-          <a href="<?= site_url('users/create'); ?>" class="btn btn-create text-white px-5 py-2">
-            + Create New User
-          </a>
-        </div>
-      <?php endif; ?>
     </div>
   </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const searchInput = document.getElementById("searchInput");
-      const clearBtn = document.getElementById("clearSearch");
-
-      function toggleClearButton() {
-        clearBtn.style.display = searchInput.value.trim() ? "inline" : "none";
-      }
-
-      toggleClearButton(); // initial check
-      searchInput.addEventListener("input", toggleClearButton);
-
-      clearBtn.addEventListener("click", function () {
-        searchInput.value = "";
-        toggleClearButton();
-        window.location.href = "<?= site_url('users'); ?>"; // redirect to clear query
-      });
-    });
-  </script>
 </body>
 </html>

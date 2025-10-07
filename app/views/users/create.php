@@ -6,204 +6,198 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Create User</title>
 
-  <!-- Bootstrap CSS -->
+  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <!-- Google Fonts Poppins -->
+  <!-- Poppins Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
 
   <style>
-  body {
-    min-height: 100vh;
-    margin: 0;
-    font-family: "Poppins", sans-serif;
-    background: url('<?= base_url() . "public/image/BG2.jpg"; ?>') no-repeat center center/cover;
-    padding: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(120deg, rgba(0, 51, 153, 0.9), rgba(204, 0, 0, 0.8)), 
+        url('<?= base_url() . "public/image/BG2.jpg"; ?>') no-repeat center center / cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
 
-  .card {
-    border-radius: 16px;
-    box-shadow: 0 8px 20px rgba(0, 51, 153, 0.3); /* DPWH Blue shadow */
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    max-width: 480px;
-    width: 100%;
-    border: 1px solid rgba(255, 204, 0, 0.4); /* Gold border */
-  }
+    .card {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 204, 0, 0.3);
+      box-shadow: 0 10px 25px rgba(0, 51, 153, 0.3);
+      padding: 2rem 2.5rem;
+      position: relative;
+    }
 
-  h2 {
-    color: #003399; /* DPWH Blue */
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    text-align: center;
-    letter-spacing: 0.05em;
-  }
+    .card::before {
+      content: "";
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #ffcc00, transparent, #003399);
+      z-index: -1;
+      opacity: 0.3;
+    }
 
-  label {
-    font-weight: 600;
-    color: #003399; /* Blue label */
-  }
+    h2 {
+      text-align: center;
+      color: #003399;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
 
-  input,
-  select {
-    border-radius: 12px;
-    border: 1.5px solid #FFCC00; /* Gold border */
-    padding: 0.65rem 1rem;
-    font-size: 1rem;
-    color: #001a66; /* Dark blue text */
-    background: rgba(255, 255, 255, 0.8);
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  }
+    label {
+      font-weight: 600;
+      color: #003399;
+      margin-bottom: 0.4rem;
+    }
 
-  input::placeholder {
-    color: #7a7a7a;
-  }
+    .form-control {
+      border-radius: 12px;
+      border: 1.5px solid rgba(255, 204, 0, 0.8);
+      background: rgba(255, 255, 255, 0.9);
+      color: #001a66;
+      padding: 0.7rem 1rem;
+      transition: 0.3s ease;
+    }
 
-  input:focus,
-  select:focus {
-    outline: none;
-    border-color: #003399;
-    box-shadow: 0 0 8px rgba(0, 51, 153, 0.4);
-    background: #fff;
-  }
+    .form-control:focus {
+      border-color: #003399;
+      box-shadow: 0 0 0 4px rgba(0, 51, 153, 0.2);
+      background-color: #fff;
+    }
 
-  .form-control:focus-visible {
-    outline-offset: 0;
-  }
+    .input-with-icon {
+      position: relative;
+    }
 
-  /* Input with icon */
-  .input-with-icon {
-    display: flex;
-    align-items: center;
-    position: relative;
-  }
+    .input-with-icon i {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #ffcc00;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
 
-  .input-with-icon input {
-    flex: 1;
-    padding-right: 2.5rem;
-  }
+    .input-with-icon i:hover {
+      color: #003399;
+    }
 
-  .input-with-icon i {
-    margin-left: -2rem;
-    cursor: pointer;
-    color: #FFCC00; /* Gold icon */
-    font-size: 1.2rem;
-    flex-shrink: 0;
-    transition: color 0.3s ease;
-  }
+    .btn-create {
+      display: inline-block;
+      width: 100%;
+      padding: 0.8rem;
+      border: none;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #fff;
+      background: linear-gradient(135deg, #003399, #cc0000);
+      box-shadow: 0 8px 18px rgba(0, 51, 153, 0.3);
+      transition: all 0.3s ease-in-out;
+    }
 
-  .input-with-icon i:hover {
-    color: #003399; /* Blue hover */
-  }
+    .btn-create:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(0, 51, 153, 0.5);
+      background: linear-gradient(135deg, #002266, #990000);
+    }
 
-  .btn-create {
-    background: linear-gradient(135deg, #003399, #CC0000); /* Blue → Red gradient */
-    border: none;
-    color: white;
-    font-weight: 600;
-    padding: 0.75rem;
-    border-radius: 12px;
-    width: 100%;
-    font-size: 1.1rem;
-    box-shadow: 0 6px 12px rgba(0, 51, 153, 0.3);
-    transition: all 0.3s ease;
-  }
+    .btn-back-container {
+      text-align: center;
+      margin-top: 1.5rem;
+    }
 
-  .btn-create:hover {
-    background: linear-gradient(135deg, #002266, #990000);
-    box-shadow: 0 8px 16px rgba(0, 51, 153, 0.5);
-  }
+    .btn-back {
+      display: inline-block;
+      color: #003399;
+      font-weight: 600;
+      border: 1.5px solid #ffcc00;
+      padding: 0.6rem 1.5rem;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.85);
+      transition: 0.3s ease;
+      box-shadow: 0 4px 10px rgba(255, 204, 0, 0.3);
+      text-decoration: none;
+    }
 
-  .error-message {
-    background: rgba(255, 0, 0, 0.1);
-    border: 1px solid rgba(255, 0, 0, 0.3);
-    color: #a70000;
-    border-radius: 12px;
-    padding: 0.75rem 1rem;
-    text-align: center;
-    margin-bottom: 1rem;
-    font-weight: 600;
-    font-size: 0.9rem;
-  }
+    .btn-back:hover {
+      background: linear-gradient(135deg, #003399, #cc0000);
+      color: white;
+      box-shadow: 0 6px 16px rgba(0, 51, 153, 0.4);
+      text-decoration: none;
+    }
 
-  .btn-back-container {
-    margin-top: 1.5rem;
-    text-align: center;
-  }
-
-  .btn-back {
-    color: #003399;
-    font-weight: 600;
-    text-decoration: none;
-    border: 1.5px solid #FFCC00;
-    padding: 0.5rem 1.75rem;
-    border-radius: 12px;
-    display: inline-block;
-    transition: all 0.3s ease;
-    background: rgba(255, 255, 255, 0.75);
-    box-shadow: 0 4px 8px rgba(255, 204, 0, 0.3);
-  }
-
-  .btn-back:hover {
-    color: white;
-    background: linear-gradient(135deg, #003399, #CC0000);
-    box-shadow: 0 6px 14px rgba(0, 51, 153, 0.5);
-    text-decoration: none;
-  }
-</style>
-
-
+    .error-message {
+      background: rgba(255, 0, 0, 0.1);
+      border: 1px solid rgba(255, 0, 0, 0.3);
+      color: #a70000;
+      border-radius: 10px;
+      padding: 0.75rem 1rem;
+      text-align: center;
+      margin-bottom: 1rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
 
 <body>
-  <div class="card p-5">
+  <div class="card">
     <h2>Create User</h2>
 
-    <!-- Error Message -->
     <?php if (!empty($error)) : ?>
       <div class="error-message"><?= $error ?></div>
     <?php endif; ?>
 
-    <form method="post" action="<?= site_url('users/create'); ?>" class="mb-3">
-      <!-- Username -->
-      <div class="mb-4">
-        <label for="username" class="form-label">Username</label>
-        <input type="text" id="username" name="username" placeholder="Username" required
+    <form method="post" action="<?= site_url('users/create'); ?>">
+      <div class="mb-3">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" placeholder="Enter username" required
           value="<?= isset($username) ? html_escape($username) : '' ?>" class="form-control" />
       </div>
 
-      <!-- Email -->
-      <div class="mb-4">
-        <label for="email" class="form-label">Email</label>
-        <input type="email" id="email" name="email" placeholder="Email" required
+      <div class="mb-3">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter email" required
           value="<?= isset($email) ? html_escape($email) : '' ?>" class="form-control" />
       </div>
 
-      <!-- Password -->
-      <div class="mb-4">
-        <label for="password" class="form-label">Password</label>
+      <div class="mb-3">
+        <label for="password">Password</label>
         <div class="input-with-icon">
-          <input type="password" name="password" id="password" placeholder="Password" required class="form-control" />
+          <input type="password" name="password" id="password" placeholder="Enter password" required class="form-control" />
           <i class="fa-solid fa-eye" id="togglePassword"></i>
         </div>
       </div>
 
-      <!-- Confirm Password -->
-      <div class="mb-4">
-        <label for="confirmPassword" class="form-label">Confirm Password</label>
+      <div class="mb-3">
+        <label for="confirmPassword">Confirm Password</label>
         <div class="input-with-icon">
-          <input type="password" name="confirm_password" id="confirmPassword" placeholder="Confirm Password" required
-            class="form-control" />
+          <input type="password" name="confirm_password" id="confirmPassword" placeholder="Confirm password" required class="form-control" />
           <i class="fa-solid fa-eye" id="toggleConfirmPassword"></i>
         </div>
       </div>
 
-      <!-- Role -->
-      <div class="mb-4">
-        <label for="role" class="form-label">Role</label>
+      <div class="mb-3">
+        <label for="role">Role</label>
         <select name="role" id="role" required class="form-control">
           <option value="" disabled <?= !isset($role) ? 'selected' : '' ?>>-- Select Role --</option>
           <option value="admin" <?= isset($role) && $role == "admin" ? 'selected' : '' ?>>Admin</option>
@@ -211,20 +205,15 @@
         </select>
       </div>
 
-      <!-- Submit -->
       <button type="submit" class="btn-create">Create User</button>
     </form>
 
-    <!-- Back button container -->
     <div class="btn-back-container">
       <a href="<?= site_url('users'); ?>" class="btn-back">Back</a>
     </div>
   </div>
 
-  <!-- Font Awesome -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
-
-  <!-- Bootstrap Bundle with Popper -->
+  <!-- Bootstrap Bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
   <!-- Toggle Password Script -->
@@ -232,25 +221,16 @@
     function toggleVisibility(toggleId, inputId) {
       const toggle = document.getElementById(toggleId);
       const input = document.getElementById(inputId);
-
-      toggle.addEventListener('click', function () {
-        const type = input.type === 'password' ? 'text' : 'password';
+      toggle.addEventListener("click", () => {
+        const type = input.type === "password" ? "text" : "password";
         input.type = type;
-
-        this.classList.toggle('fa-eye');
-        this.classList.toggle('fa-eye-slash');
-      });
-
-      toggle.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          this.click();
-        }
+        toggle.classList.toggle("fa-eye");
+        toggle.classList.toggle("fa-eye-slash");
       });
     }
 
-    toggleVisibility('togglePassword', 'password');
-    toggleVisibility('toggleConfirmPassword', 'confirmPassword');
+    toggleVisibility("togglePassword", "password");
+    toggleVisibility("toggleConfirmPassword", "confirmPassword");
   </script>
 </body>
 
